@@ -1,5 +1,9 @@
 <template>
 	<header class="private-area-header">
+		<h5 class="q-ma-none q-py-sm float-left">
+			<b class="text-grey-9 text-italic">UltraMegaTop 💯</b>
+		</h5>
+
 		<div class="identify bg-grey-2">
 			<q-list>
 				<q-item clickable v-ripple>
@@ -16,6 +20,7 @@
 				</q-item>
 			</q-list>
 		</div>
+		<div class="clear-both"></div>
 	</header>
 </template>
 <script lang="ts">
