@@ -1,3 +1,12 @@
+# Instruções
+
+-   Node 14
+-   Para rodar o projeto bastar executar o comando
+
+```bash
+npx quasar dev
+```
+
 # Ultra Mega Top
 
 Considere o seguinte cenário:
