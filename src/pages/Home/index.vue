@@ -1,8 +1,13 @@
 <template>
 	<div class="page-home q-py-md">
-		<b>Escolha uma avaliação</b>
 		<div class="cnt-chosen-test">
-			<q-select class="input bg-white" :options="mock" outlined />
+			<q-select
+				label="Avaliação"
+				class="input bg-white"
+				value="1º trimestre"
+				:options="mock"
+				outlined
+			/>
 			<q-btn
 				label="Novo avaliação"
 				color="primary"
@@ -14,11 +19,44 @@
 		<div class="box q-mt-xl">
 			<q-table
 				title="Avaliações"
-				:rows="rows"
+				:data="rows"
 				:columns="columns"
 				row-key="name"
-				unle
-			/>
+				class="shadow-0"
+			>
+				<template v-slot:body-cell-correctAnswers="props">
+					<q-td :props="props">
+						<div class="q-gutter-xs">
+							<q-badge
+								v-for="i in props.value"
+								:key="i"
+								color="positive"
+								:label="i"
+							/>
+						</div>
+					</q-td>
+				</template>
+				<template v-slot:body-cell-wrongAnswers="props">
+					<q-td :props="props">
+						<div class="q-gutter-xs">
+							<q-badge
+								v-for="i in props.value"
+								:key="i"
+								color="negative"
+								:label="i"
+							/>
+						</div>
+					</q-td>
+				</template>
+				<template v-slot:body-cell-actions="props">
+					<q-td :props="props">
+						<div class="q-gutter-xs">
+							<q-btn flat round icon="search" />
+							<q-btn flat round icon="delete" color="negative" />
+						</div>
+					</q-td>
+				</template>
+			</q-table>
 		</div>
 	</div>
 </template>
@@ -27,148 +65,85 @@
 
 	@Component
 	export default class Home extends Vue {
-		mock = ['Avaliação de trimestre 1'];
+		mock = ['1º trimestre'];
 
 		columns = [
 			{
-				name: 'name',
+				name: 'id',
+				field: 'id',
 				required: true,
-				label: 'Dessert (100g serving)',
+				label: 'Maticula',
 				align: 'left',
+				sortable: true,
+			},
+			{
+				name: 'name',
+				field: 'name',
+				required: true,
+				label: 'Aluno',
+				align: 'left',
+				sortable: true,
+			},
 
+			{
+				name: 'evaluation',
+				label: 'Nota',
+				field: 'evaluation',
+				align: 'left',
 				sortable: true,
 			},
 			{
-				name: 'calories',
-				align: 'center',
-				label: 'Calories',
-				field: 'calories',
-				sortable: true,
-			},
-			{ name: 'fat', label: 'Fat (g)', field: 'fat', sortable: true },
-			{ name: 'carbs', label: 'Carbs (g)', field: 'carbs' },
-			{ name: 'protein', label: 'Protein (g)', field: 'protein' },
-			{ name: 'sodium', label: 'Sodium (mg)', field: 'sodium' },
-			{
-				name: 'calcium',
-				label: 'Calcium (%)',
-				field: 'calcium',
-				sortable: true,
+				name: 'duration',
+				align: 'left',
+				label: 'Duração',
+				field: 'duration',
 			},
 			{
-				name: 'iron',
-				label: 'Iron (%)',
-				field: 'iron',
-				sortable: true,
+				name: 'correctAnswers',
+				align: 'left',
+				label: 'Questões corretas',
+				field: 'correctAnswers',
+			},
+			{
+				name: 'wrongAnswers',
+				align: 'left',
+				label: 'Questões erradas',
+				field: 'wrongAnswers',
+			},
+			{
+				name: 'date',
+				align: 'left',
+				label: 'Feita em',
+				field: (d: { date: Date }) => {
+					return new Date(d.date).toLocaleDateString('pt-br');
+				},
+			},
+			{
+				name: 'actions',
+				align: 'right',
+				label: 'Ações',
 			},
 		];
 
 		rows = [
 			{
-				name: 'Frozen Yogurt',
-				calories: 159,
-				fat: 6.0,
-				carbs: 24,
-				protein: 4.0,
-				sodium: 87,
-				calcium: '14%',
-				iron: '1%',
-			},
-			{
-				name: 'Ice cream sandwich',
-				calories: 237,
-				fat: 9.0,
-				carbs: 37,
-				protein: 4.3,
-				sodium: 129,
-				calcium: '8%',
-				iron: '1%',
-			},
-			{
-				name: 'Eclair',
-				calories: 262,
-				fat: 16.0,
-				carbs: 23,
-				protein: 6.0,
-				sodium: 337,
-				calcium: '6%',
-				iron: '7%',
-			},
-			{
-				name: 'Cupcake',
-				calories: 305,
-				fat: 3.7,
-				carbs: 67,
-				protein: 4.3,
-				sodium: 413,
-				calcium: '3%',
-				iron: '8%',
-			},
-			{
-				name: 'Gingerbread',
-				calories: 356,
-				fat: 16.0,
-				carbs: 49,
-				protein: 3.9,
-				sodium: 327,
-				calcium: '7%',
-				iron: '16%',
-			},
-			{
-				name: 'Jelly bean',
-				calories: 375,
-				fat: 0.0,
-				carbs: 94,
-				protein: 0.0,
-				sodium: 50,
-				calcium: '0%',
-				iron: '0%',
-			},
-			{
-				name: 'Lollipop',
-				calories: 392,
-				fat: 0.2,
-				carbs: 98,
-				protein: 0,
-				sodium: 38,
-				calcium: '0%',
-				iron: '2%',
-			},
-			{
-				name: 'Honeycomb',
-				calories: 408,
-				fat: 3.2,
-				carbs: 87,
-				protein: 6.5,
-				sodium: 562,
-				calcium: '0%',
-				iron: '45%',
-			},
-			{
-				name: 'Donut',
-				calories: 452,
-				fat: 25.0,
-				carbs: 51,
-				protein: 4.9,
-				sodium: 326,
-				calcium: '2%',
-				iron: '22%',
-			},
-			{
-				name: 'KitKat',
-				calories: 518,
-				fat: 26.0,
-				carbs: 65,
-				protein: 7,
-				sodium: 54,
-				calcium: '12%',
-				iron: '6%',
+				id: 12345678,
+				name: 'John Due Jr',
+				evaluation: '5/10',
+				duration: '13:56',
+				correctAnswers: [1, 2, 5, 8, 9],
+				wrongAnswers: [3, 4, 6, 7, 10],
+				date: new Date(),
 			},
 		];
 	}
 </script>
 <style lang="scss" scoped>
 	.page-home {
+		.box {
+			border: 1px solid $grey-5;
+			border-radius: 4px;
+		}
 	}
 
 	.cnt-chosen-test {
