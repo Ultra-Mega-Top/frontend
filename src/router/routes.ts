@@ -13,6 +13,10 @@ const routes: RouteConfig[] = [
 				path: 'questionnaire/:questionnaireId',
 				component: () => import('pages/Questionnaire/index.vue'),
 			},
+			{
+				path: 'evaluation/:questionnaireId',
+				component: () => import('pages/Evaluation/index.vue'),
+			},
 		],
 	},
 	{

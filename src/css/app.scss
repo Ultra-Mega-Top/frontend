@@ -2,6 +2,11 @@
 body {
 	background: $grey-2;
 }
+html,
+body,
+#q-app {
+	height: 100%;
+}
 
 .clear-both {
 	clear: both;

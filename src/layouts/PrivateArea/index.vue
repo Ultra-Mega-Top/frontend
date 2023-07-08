@@ -1,6 +1,7 @@
 <template>
 	<div class="private-area">
 		<PrivateAreaHeader />
+
 		<router-view />
 	</div>
 </template>
@@ -18,5 +19,6 @@
 		width: 98%;
 		max-width: 1200px;
 		margin: 0 auto;
+		height: 100%;
 	}
 </style>
