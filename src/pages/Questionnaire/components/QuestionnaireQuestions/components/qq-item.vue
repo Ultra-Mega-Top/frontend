@@ -1,5 +1,5 @@
 <template>
-	<q-timeline-entry subtitle="Questão 1">
+	<q-timeline-entry :subtitle="`Questão ${number + 1}`">
 		<div class="actions">
 			<q-btn flat round color="negative" icon="delete" />
 		</div>
@@ -11,15 +11,18 @@
 	import { Component, Prop, Vue } from 'vue-property-decorator';
 
 	import { iQuestion } from 'src/interfaces/iQuestion';
-	import { findQuestionById } from 'src/components/questions/registry';
+	import { findQuestionByType } from 'src/components/questions/registry';
 
 	@Component
 	export default class QQ_Item extends Vue {
 		@Prop()
 		question!: iQuestion;
 
+		@Prop()
+		number!: number;
+
 		get component() {
-			const builder = findQuestionById(this.question.type);
+			const builder = findQuestionByType(this.question.type);
 			if (!builder) return null;
 
 			return builder.editable();

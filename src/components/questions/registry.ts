@@ -14,6 +14,6 @@ export interface QuestionProtocol {
 
 export const questions: QuestionProtocol[] = [new StaticSelective()];
 
-export function findQuestionById(type: string) {
+export function findQuestionByType(type: string) {
 	return questions.find((question) => question.type === type);
 }
