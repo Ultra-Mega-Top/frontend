@@ -1,5 +1,7 @@
 <template>
 	<div class="q-gutter-md">
+		<div class="q-pb-sm text-grey-7 text-h5">Configurações</div>
+
 		<q-input
 			v-model="form.title"
 			label="Nome do questionário"

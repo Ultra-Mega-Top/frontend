@@ -8,7 +8,7 @@
 		/>
 
 		<div class="q-pt-md">
-			<span class="text-grey-7">Respostas</span>
+			<span class="text-grey-7">Opções</span>
 
 			<q-list separator bordered class="bg-white">
 				<SSE_Item

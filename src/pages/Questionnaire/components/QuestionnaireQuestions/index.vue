@@ -1,9 +1,9 @@
 <template>
 	<div class="questionnaire-questions">
-		<h4 class="q-ma-none q-pt-xl q-pb-sm text-grey-7">
+		<div class="q-ma-none q-pt-xl q-pb-sm text-grey-7 text-h5">
 			Questões
 			<small class="text-grey-5">[{{ form.questions.length }}]</small>
-		</h4>
+		</div>
 
 		<q-timeline>
 			<QQ_Item
