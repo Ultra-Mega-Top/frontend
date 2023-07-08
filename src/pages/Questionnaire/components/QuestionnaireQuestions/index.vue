@@ -11,6 +11,7 @@
 				:key="question.id"
 				:number="index"
 				:question="question"
+				@delete-question="handleDeleteItem"
 			/>
 		</q-timeline>
 
@@ -29,6 +30,7 @@
 
 	import QQ_Item from './components/qq-item.vue';
 	import { iQuestionnaire } from 'src/interfaces/iQuestionnaire';
+	import Swal from 'sweetalert2';
 
 	import { findQuestionByType } from 'src/components/questions/registry';
 
@@ -47,6 +49,29 @@
 			const newQuestionData = builder.factory();
 
 			this.form.questions.push(newQuestionData);
+		}
+
+		async handleDeleteItem(questionId: string) {
+			const { isConfirmed } = await Swal.fire({
+				title: 'Atenção',
+				text: 'Você realmente deseja apagar essa questão?',
+				icon: 'warning',
+
+				showCancelButton: true,
+				cancelButtonText: 'Cancelar',
+				cancelButtonColor: '',
+
+				confirmButtonText: 'Sim, desejo apaga-lá',
+				confirmButtonColor: '#C10015',
+			});
+
+			if (!isConfirmed) return;
+
+			const index = this.form.questions.findIndex(
+				(question) => question.id === questionId
+			);
+
+			if (index !== -1) this.form.questions.splice(index, 1);
 		}
 	}
 </script>

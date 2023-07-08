@@ -1,7 +1,13 @@
 <template>
 	<q-timeline-entry :subtitle="`Questão ${number + 1}`">
 		<div class="actions">
-			<q-btn flat round color="negative" icon="delete" />
+			<q-btn
+				flat
+				round
+				color="negative"
+				icon="delete"
+				@click="$emit('delete-question', question.id)"
+			/>
 		</div>
 
 		<component :is="component" v-model="question" />
