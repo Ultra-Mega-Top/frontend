@@ -9,6 +9,10 @@ const routes: RouteConfig[] = [
 				path: '',
 				component: () => import('pages/Home/index.vue'),
 			},
+			{
+				path: 'questionnaire/:questionnaireId',
+				component: () => import('pages/Questionnaire/index.vue'),
+			},
 		],
 	},
 	{

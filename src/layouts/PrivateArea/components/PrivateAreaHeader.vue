@@ -1,10 +1,12 @@
 <template>
 	<header class="private-area-header">
 		<h5 class="q-ma-none q-py-sm float-left">
-			<b class="text-grey-9 text-italic">UltraMegaTop 💯</b>
+			<router-link class="logo text-grey-9 text-italic" to="/panel">
+				UltraMegaTop 💯
+			</router-link>
 		</h5>
 
-		<div class="identify bg-grey-2">
+		<div class="identify bg-white">
 			<q-list>
 				<q-item clickable v-ripple>
 					<q-item-section avatar>
@@ -34,12 +36,19 @@
 		display: block;
 
 		.identify {
+			position: sticky;
+			top: 0;
+			z-index: 150;
 			width: 300px;
 			float: right;
 			border: 1px solid $grey-5;
 			border-top: none;
 			border-bottom-right-radius: 4px;
 			border-bottom-left-radius: 4px;
+		}
+
+		.logo {
+			text-decoration: none;
 		}
 	}
 </style>

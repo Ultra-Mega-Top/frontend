@@ -3,7 +3,12 @@
 		<b>Escolha uma avaliação</b>
 		<div class="cnt-chosen-test">
 			<q-select class="input bg-white" :options="mock" outlined />
-			<q-btn label="Novo avaliação" color="primary" unelevated />
+			<q-btn
+				label="Novo avaliação"
+				color="primary"
+				unelevated
+				to="/panel/questionnaire/new"
+			/>
 		</div>
 
 		<div class="box q-mt-xl">
