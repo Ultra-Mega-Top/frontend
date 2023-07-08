@@ -1,13 +1,14 @@
 import { QuestionProtocol } from '../registry';
-import { iStaticSelective } from './interfaces/iStaticSelective';
 import { StaticSelectiveFactory } from './utils/factory';
 
 import StaticSelectiveEditable from './components/editable/index.vue';
 import StaticSelectiveRuntime from './components/runtime/index.vue';
 import StaticSelectiveViewer from './components/viewer/index.vue';
+import { iQuestion } from 'src/interfaces/iQuestion';
+import { iStaticSelective } from './interfaces/iStaticSelective';
 
 export class StaticSelective implements QuestionProtocol {
-	qType = 'static-selective';
+	type = 'static-selective';
 
 	editable() {
 		return StaticSelectiveEditable;
@@ -25,7 +26,7 @@ export class StaticSelective implements QuestionProtocol {
 		return StaticSelectiveFactory();
 	}
 
-	validate(question: iStaticSelective) {
+	validate(question: iQuestion | iStaticSelective) {
 		const titleIsValid = question.title.length > 3;
 
 		return titleIsValid;

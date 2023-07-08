@@ -1,18 +1,19 @@
+import { iQuestion } from 'src/interfaces/iQuestion';
 import { StaticSelective } from './StaticSelective/StaticSelective';
 
 export interface QuestionProtocol {
-	qType: string;
+	type: string;
 
 	editable: () => any;
 	viewer: () => any;
 	runtime: () => any;
-	factory: () => any;
 
-	validate: (question: any) => boolean;
+	factory: () => iQuestion;
+	validate: (question: iQuestion) => boolean;
 }
 
 export const questions: QuestionProtocol[] = [new StaticSelective()];
 
-export function findQuestionById(qType: string) {
-	return questions.find((question) => question.qType === qType);
+export function findQuestionById(type: string) {
+	return questions.find((question) => question.type === type);
 }

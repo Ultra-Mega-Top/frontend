@@ -2,11 +2,16 @@
 	<div class="questionnaire-questions">
 		<h4 class="q-ma-none q-pt-xl q-pb-sm text-grey-7">
 			Questões
-			<small class="text-grey-5">[5]</small>
+			<small class="text-grey-5">[{{ form.questions.length }}]</small>
 		</h4>
 
 		<q-timeline>
-			<QQ_Item />
+			<QQ_Item
+				v-for="(question, index) in form.questions"
+				:key="question.id"
+				:number="index"
+				:question="question"
+			/>
 		</q-timeline>
 
 		<q-btn
@@ -19,11 +24,15 @@
 	</div>
 </template>
 <script lang="ts">
-	import { Component, Vue } from 'vue-property-decorator';
+	import { Component, Model, Vue } from 'vue-property-decorator';
 
 	import QQ_Item from './components/qq-item.vue';
+	import { iQuestionnaire } from 'src/interfaces/iQuestionnaire';
 
 	@Component({ components: { QQ_Item } })
-	export default class QuestionnaireQuestions extends Vue {}
+	export default class QuestionnaireQuestions extends Vue {
+		@Model()
+		form!: iQuestionnaire;
+	}
 </script>
 <style lang="scss" scoped></style>

@@ -2,9 +2,12 @@
 	<div class="questionnaire-page q-py-xl">
 		<div class="row">
 			<div class="col-8">
-				<QuestionnaireSettings />
+				<QuestionnaireSettings v-model="form" />
 
-				<QuestionnaireQuestions />
+				<QuestionnaireQuestions v-model="form" />
+			</div>
+			<div class="col">
+				<pre>{{ form }}</pre>
 			</div>
 		</div>
 	</div>
@@ -15,9 +18,13 @@
 	import QuestionnaireSettings from './components/QuestionnaireSettings.vue';
 	import QuestionnaireQuestions from './components/QuestionnaireQuestions/index.vue';
 
+	import { QuestionnaireFactory } from './utils/QuestionnaireFactory';
+
 	@Component({
 		components: { QuestionnaireSettings, QuestionnaireQuestions },
 	})
-	export default class QuestionnairePage extends Vue {}
+	export default class QuestionnairePage extends Vue {
+		form = QuestionnaireFactory();
+	}
 </script>
 <style lang="scss" scoped></style>

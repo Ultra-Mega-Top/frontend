@@ -1,11 +1,10 @@
-export interface iStaticSelective {
-	qId: string;
+import { iQuestion } from 'src/interfaces/iQuestion';
 
-	title: string;
+export interface iStaticSelective extends iQuestion {
+	correctId: string;
 
 	options: {
 		id: string;
 		label: string;
-		isCorrect: boolean;
 	}[];
 }
