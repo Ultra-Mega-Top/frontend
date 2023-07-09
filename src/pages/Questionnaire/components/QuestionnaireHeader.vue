@@ -46,16 +46,58 @@
 			<q-separator />
 
 			<q-card-actions class="q-pa-md bg-grey-1">
-				<q-btn outline color="positive">Salvar</q-btn>
-				<q-btn unelevated color="positive">Publicar</q-btn>
+				<q-btn
+					:loading="loading.save"
+					:disable="loading.save"
+					outline
+					color="positive"
+					@click="handleSave"
+				>
+					Salvar
+				</q-btn>
+
+				<q-btn
+					:loading="loading.publish"
+					:disable="loading.publish"
+					unelevated
+					color="positive"
+				>
+					Publicar
+				</q-btn>
 			</q-card-actions>
 		</q-card>
 	</div>
 </template>
 <script lang="ts">
-	import { Component, Vue } from 'vue-property-decorator';
+	import { Component, Model, Vue } from 'vue-property-decorator';
+
+	import { CreateQuestionnaireStore } from 'src/store/Modules/CreateQuestionnaire';
+	import { iQuestionnaire } from 'src/interfaces/iQuestionnaire';
+	import { cloneDeep } from 'lodash';
 
 	@Component({})
-	export default class QuestionnaireHeader extends Vue {}
+	export default class QuestionnaireHeader extends Vue {
+		loading = {
+			save: false,
+			publish: false,
+		};
+
+		@Model()
+		form!: iQuestionnaire;
+
+		@CreateQuestionnaireStore.Action
+		createQuestionnaire!: (questionnaire: iQuestionnaire) => Promise<void>;
+
+		async handleSave() {
+			try {
+				this.loading.save = true;
+				const dto = cloneDeep(this.form);
+				await this.createQuestionnaire(dto);
+			} catch (error) {
+				console.log('🗿🍷 ~ error:', error);
+			}
+			this.loading.save = false;
+		}
+	}
 </script>
 <style lang="scss" scoped></style>
