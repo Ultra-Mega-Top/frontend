@@ -30,7 +30,7 @@
 
 	import { HomeStore } from 'src/store/Modules/Home';
 
-	import HeaderHome from './components/HeaderHome/index.vue';
+	import HeaderHome from './components/HeaderHome.vue';
 	import EvaluationsTable from './components/EvaluationsTable/index.vue';
 	import CardEmailVehicle from './components/CardLinkVehicle.vue';
 	import CardLinkVehicle from './components/CardEmailVehicle.vue';

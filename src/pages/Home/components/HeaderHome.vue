@@ -3,7 +3,8 @@
 		<q-select
 			label="Avaliação"
 			class="input bg-white"
-			v-model="choosen"
+			:value="choosenQuestionnaire"
+			@input="setQuestionnaire"
 			:options="questionnaires"
 			emit-value
 			map-options
@@ -24,10 +25,15 @@
 	import { Component, Vue } from 'vue-property-decorator';
 
 	import { HomeStore } from 'src/store/Modules/Home';
+	import { PersistDataStore } from 'src/store/Modules/PersistData';
 
 	@Component
 	export default class HeaderHome extends Vue {
-		choosen = '';
+		@PersistDataStore.State
+		choosenQuestionnaire!: string;
+
+		@PersistDataStore.Mutation('SET_QUESTIONNAIRE')
+		setQuestionnaire!: (p: string) => void;
 
 		@HomeStore.State
 		questionnaires!: { _id: string; title: string }[];

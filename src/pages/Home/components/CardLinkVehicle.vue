@@ -5,17 +5,27 @@
 		</q-card-section>
 
 		<q-card-section class="q-pt-none">
-			<q-input
-				readonly
-				outlined
-				class="bg-grey-1"
-				value="http://localhost/teste/64"
-			>
+			<q-input readonly outlined class="bg-grey-1" :value="evaluationUrl">
 				<template v-slot:append>
-					<q-btn round dense flat icon="content_copy">
+					<q-icon v-if="copied" name="check" color="positive" />
+					<q-btn
+						v-else
+						@click="handleCopy"
+						round
+						dense
+						flat
+						icon="content_copy"
+					>
 						<q-tooltip>Copiar</q-tooltip>
 					</q-btn>
-					<q-btn round dense flat icon="open_in_new">
+
+					<q-btn
+						@click="handleOpenInNewTab"
+						round
+						dense
+						flat
+						icon="open_in_new"
+					>
 						<q-tooltip>Abrir em uma aba</q-tooltip>
 					</q-btn>
 				</template>
@@ -32,7 +42,37 @@
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
 
+	import { copyToClipboard } from 'quasar';
+	import { Delay } from 'src/utils/Delay';
+
+	import { PersistDataStore } from 'src/store/Modules/PersistData';
+
 	@Component
-	export default class CardEmailVehicle extends Vue {}
+	export default class CardEmailVehicle extends Vue {
+		copied = false;
+
+		@PersistDataStore.State
+		choosenQuestionnaire!: string;
+
+		get evaluationUrl() {
+			const baseUrl = window.location.origin;
+			return `${baseUrl}/#/panel/evaluation/${this.choosenQuestionnaire}`;
+		}
+
+		async handleCopy() {
+			await copyToClipboard(this.evaluationUrl);
+			this.copied = true;
+			await Delay(1000);
+			this.copied = false;
+		}
+
+		handleOpenInNewTab() {
+			window.open(this.evaluationUrl, '_blank');
+		}
+
+		mounted() {
+			console.log();
+		}
+	}
 </script>
 <style lang="scss" scoped></style>
