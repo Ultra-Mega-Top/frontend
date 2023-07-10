@@ -1,7 +1,10 @@
+import { ShortEvaluation } from 'src/store/Modules/Home';
+import { msToTime } from 'src/utils/msToTime';
+
 export const columns = [
 	{
 		name: 'id',
-		field: 'id',
+		field: 'studentId',
 		required: true,
 		label: 'Maticula',
 		align: 'left',
@@ -19,7 +22,10 @@ export const columns = [
 	{
 		name: 'evaluation',
 		label: 'Nota',
-		field: 'evaluation',
+		field: (line: ShortEvaluation) => {
+			if (!line.evaluation) return '-';
+			return `${line.evaluation}/${line.maxEvaluation}`;
+		},
 		align: 'left',
 		sortable: true,
 	},
@@ -27,7 +33,10 @@ export const columns = [
 		name: 'duration',
 		align: 'left',
 		label: 'Duração',
-		field: 'duration',
+		field: (line: ShortEvaluation) => {
+			if (!line.duration) return '-';
+			return msToTime(line.duration);
+		},
 	},
 	{
 		name: 'correctAnswers',

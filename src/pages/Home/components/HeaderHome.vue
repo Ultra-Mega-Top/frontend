@@ -4,7 +4,9 @@
 			label="Avaliação"
 			class="input bg-white"
 			:value="choosenQuestionnaire"
-			@input="setQuestionnaire"
+			:loading="loading"
+			:disabled="loading"
+			@input="handleSetQuestionnaire"
 			:options="questionnaires"
 			emit-value
 			map-options
@@ -29,14 +31,26 @@
 
 	@Component
 	export default class HeaderHome extends Vue {
+		loading = false;
+
 		@PersistDataStore.State
 		choosenQuestionnaire!: string;
 
 		@PersistDataStore.Mutation('SET_QUESTIONNAIRE')
 		setQuestionnaire!: (p: string) => void;
 
+		@HomeStore.Action
+		loadEvaluations!: (p: string) => Promise<void>;
+
 		@HomeStore.State
 		questionnaires!: { _id: string; title: string }[];
+
+		async handleSetQuestionnaire(questionnaireId: string) {
+			this.loading = true;
+			this.setQuestionnaire(questionnaireId);
+			await this.loadEvaluations(questionnaireId);
+			this.loading = false;
+		}
 	}
 </script>
 <style lang="scss" scoped>

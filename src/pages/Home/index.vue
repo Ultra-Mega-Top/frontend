@@ -35,6 +35,7 @@
 	import CardEmailVehicle from './components/CardLinkVehicle.vue';
 	import CardLinkVehicle from './components/CardEmailVehicle.vue';
 	import CardOverview from './components/CardOverview.vue';
+	import { PersistDataStore } from 'src/store/Modules/PersistData';
 
 	@Component({
 		components: {
@@ -49,8 +50,15 @@
 		@HomeStore.Action
 		loadQuestionnaires!: () => Promise<void>;
 
+		@HomeStore.Action
+		loadEvaluations!: (p: string) => Promise<void>;
+
+		@PersistDataStore.State
+		choosenQuestionnaire!: string;
+
 		async mounted() {
 			await this.loadQuestionnaires();
+			await this.loadEvaluations(this.choosenQuestionnaire);
 		}
 	}
 </script>

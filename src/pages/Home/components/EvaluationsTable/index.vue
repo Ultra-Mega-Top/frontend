@@ -1,7 +1,7 @@
 <template>
 	<q-table
 		title="Avaliações"
-		:data="rows"
+		:data="evaluations"
 		:columns="columns"
 		row-key="name"
 		class="shadow-0"
@@ -10,10 +10,10 @@
 			<q-td :props="props">
 				<div class="q-gutter-xs">
 					<q-badge
-						v-for="i in props.value"
-						:key="i"
+						v-for="[c] in props.value"
+						:key="c"
 						color="positive"
-						:label="i"
+						:label="c - 1"
 					/>
 				</div>
 			</q-td>
@@ -22,10 +22,10 @@
 			<q-td :props="props">
 				<div class="q-gutter-xs">
 					<q-badge
-						v-for="i in props.value"
-						:key="i"
+						v-for="[e] in props.value"
+						:key="e"
 						color="negative"
-						:label="i"
+						:label="e - 1"
 					/>
 				</div>
 			</q-td>
@@ -41,6 +41,7 @@
 	</q-table>
 </template>
 <script lang="ts">
+	import { HomeStore, ShortEvaluation } from 'src/store/Modules/Home';
 	import { Component, Vue } from 'vue-property-decorator';
 
 	import { columns } from './Utils/columns';
@@ -49,17 +50,8 @@
 	export default class EvaluationsTable extends Vue {
 		columns = columns;
 
-		rows = [
-			{
-				id: 12345678,
-				name: 'John Due Jr',
-				evaluation: '5/10',
-				duration: '13:56',
-				correctAnswers: [1, 2, 5, 8, 9],
-				wrongAnswers: [3, 4, 6, 7, 10],
-				date: new Date(),
-			},
-		];
+		@HomeStore.State
+		evaluations!: ShortEvaluation[];
 	}
 </script>
 <style lang="scss" scoped></style>
