@@ -1,5 +1,9 @@
 <template>
-	<EvaluationWidget v-if="settings && question" :title="settings.title">
+	<EvaluationWidget
+		v-if="settings && question"
+		:title="settings.title"
+		:progress="vProgress"
+	>
 		<component
 			v-if="component && questionId"
 			:key="questionId"
@@ -9,6 +13,8 @@
 		/>
 
 		<QuestionAction slot="footer" :response="response" />
+
+		<span class="text-blue-4" slot="actions">[{{ xProgress }}]</span>
 	</EvaluationWidget>
 </template>
 <script lang="ts">
@@ -43,6 +49,12 @@
 
 		@EvaluationQuestionnaireStore.Getter
 		question!: MountQuestionDto | null;
+
+		@EvaluationQuestionnaireStore.Getter
+		vProgress!: number;
+
+		@EvaluationQuestionnaireStore.Getter
+		xProgress!: string;
 
 		get questionId() {
 			if (!this.question) return '';

@@ -2,14 +2,20 @@
 	<div class="evaluation-widget shadow-16">
 		<header class="bg-primary text-white q-px-lg q-py-md">
 			<h6 class="q-ma-none">
-				<div class="q-mr-md" v-html="title"></div>
-
 				<div v-if="$slots.actions" class="float-right">
 					<slot name="actions" />
 				</div>
+
+				<div class="q-mr-md" v-html="title"></div>
 			</h6>
 		</header>
-		<q-linear-progress v-if="progress >= 0" :value="0.5" color="blue-5" />
+
+		<q-linear-progress
+			v-if="progress >= 0"
+			:value="progress"
+			color="blue-5"
+		/>
+
 		<main class="q-pa-lg">
 			<slot />
 		</main>

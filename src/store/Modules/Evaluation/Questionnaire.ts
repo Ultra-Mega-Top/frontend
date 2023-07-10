@@ -58,6 +58,20 @@ export class EvaluationQuestionnaire extends VuexModule {
 		this.responses.pop();
 	}
 
+	get xProgress() {
+		const qntQuests = this.questions.length;
+		const responded = this.responses.length;
+
+		return `${responded + 1}/${qntQuests}`;
+	}
+
+	get vProgress() {
+		const qntQuests = this.questions.length;
+		const responded = this.responses.length;
+
+		return responded / qntQuests;
+	}
+
 	get question() {
 		if (!this.questions.length) return null;
 
@@ -95,11 +109,12 @@ export class EvaluationQuestionnaire extends VuexModule {
 
 	@Action({ commit: 'SET_CURRENT' })
 	next(response: unknown) {
-		if (this.isLastQuestion || !this.question) return this.current;
-
+		if (!this.question) return this.current;
 		const { id, type } = this.question.settings;
 		const responseData: iResponse = { questionId: id, type, response };
 		this.context.commit('APPEND_RESPONSE', responseData);
+
+		if (this.isLastQuestion) return this.current;
 		return this.current + 1;
 	}
 

@@ -77,6 +77,7 @@
 
 		async handleFinish() {
 			this.loading = true;
+			this.next(this.response);
 			await this.finishEvaluation(this.evaluationId);
 			this.loading = false;
 		}
