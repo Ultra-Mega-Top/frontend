@@ -1,13 +1,47 @@
-# Instruções
+## Entrega 
+> Bom dia presados.
+> Para este teste foram feitos dois repositórios frontend e backend, gosto de trabalhar dessa forma porque simplifica minhas ci/cd..
 
--   Node 14
--   Para rodar o projeto bastar executar o comando
+#### Repo **FRONTEND**
+> Para faze-lo funcionar bastar baixar e rodar os seguintes comandos:
 
+- Comandos bash:
 ```bash
+npm i
 npx quasar dev
 ```
 
-# Ultra Mega Top
+- Repo Github: [Aqui](https://github.com/Ultra-Mega-Top/frontend)
+
+- Informações adicionais:
+> Ao acessar o projeto a página inicial retornará erro 404. Isso é proposital, geralmente uso esta página para coisas mais importantes. Para acessar a plataforma UltraMegaTop acesse a url: [/panel](http://localhost:8080/#/panel)
+
+---
+
+#### Repo BACKEND
+> Para roda-lo basta rodar os comandos abaixo.
+
+- Comandos Bash:
+```bash
+npm i
+docker-compose up
+```
+
+- Repo Github: [Aqui](https://github.com/Ultra-Mega-Top/backend)
+
+----
+### Considerações:
+O Desafio foi bastante legal de ser executado. Embora não tenha tido tempo de entregar como gostaria consegui evoluir bastante os conceitos e entregar toda a proposta funcional. Entretendo não está estável para ser um produto. Acredito que como um teste este projeto cumpre suas expectativas.
+Embora o prazo para o projeto tenha sido de 5 dias infelizmente não tenho tempo para trabalhar mais nele. posso trabalhar apenas nos meus fins de semana. por isso estou entregando antes.
+
+Gostaria de ressaltar a modularização feita em src/components/questions, como sendo talvez a parte mais importante de projeto. porque nela aplico com sucesso LSP e DIP, além de usar bastente o factory Pattern. Projetei para que o projeto gire em torno de centro comum as "QuestionProtocol", elas ditam como cada questão deve se comportar em cada meio diferente, dentro dela existe 3 possíveis situações editable, viewer e runtime cada um deles conta com uma forma de renderização especifica. dessa forma tudo que for relativo a uma questão fica agrupado em único lugar, tornando extremamente fácil a expansão das questões e compreensão do ecossistema como um todo.
+
+Gosto de trabalhar com esse pattern porque facilita a expansão por profissionais menos sêniores enquanto foco na expansão de funcionalidades da plataforma.
+
+Infelizmente não pude publicar o projeto por falta de tempo, más gostaria de resaltar que tenho conhecimentos em AWS, Azure DevOps e Github actions para faze-lo de forma automatizadas  
+
+
+# Desafio
 
 Considere o seguinte cenário:
 
