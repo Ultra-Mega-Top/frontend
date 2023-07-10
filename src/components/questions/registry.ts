@@ -9,6 +9,8 @@ export interface QuestionProtocol {
 	runtime: () => any;
 
 	factory: () => iQuestion;
+	responseFactory: () => any;
+
 	validate: (question: iQuestion) => boolean;
 }
 

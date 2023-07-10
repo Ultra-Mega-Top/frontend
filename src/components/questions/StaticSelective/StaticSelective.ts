@@ -15,15 +15,19 @@ export class StaticSelective implements QuestionProtocol {
 	}
 
 	viewer() {
-		return StaticSelectiveRuntime;
+		return StaticSelectiveViewer;
 	}
 
 	runtime() {
-		return StaticSelectiveViewer;
+		return StaticSelectiveRuntime;
 	}
 
 	factory() {
 		return StaticSelectiveFactory();
+	}
+
+	responseFactory() {
+		return '';
 	}
 
 	validate(question: iQuestion | iStaticSelective) {

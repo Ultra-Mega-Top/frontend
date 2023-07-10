@@ -6,6 +6,9 @@ import createPersistedState from 'vuex-persistedstate';
 import { Home } from './Modules/Home';
 import { PersistData } from './Modules/PersistData';
 import { CreateQuestionnaire } from './Modules/CreateQuestionnaire';
+import { EvaluationGeneral } from './Modules/Evaluation/General';
+import { EvaluationPresentation } from './Modules/Evaluation/Presentation';
+import { EvaluationQuestionnaire } from './Modules/Evaluation/Questionnaire';
 
 export default store(function ({ Vue }) {
 	Vue.use(Vuex);
@@ -15,6 +18,9 @@ export default store(function ({ Vue }) {
 			Home,
 			PersistData,
 			CreateQuestionnaire,
+			EvaluationGeneral,
+			EvaluationPresentation,
+			EvaluationQuestionnaire,
 		},
 		plugins: [
 			createPersistedState({
