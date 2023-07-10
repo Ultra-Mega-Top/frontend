@@ -3,7 +3,7 @@ import { namespace } from 'vuex-class';
 
 @Module({ namespaced: true })
 export class EvaluationPresentation extends VuexModule {
-	current = 1;
+	current = 0;
 
 	flow = ['IdentifyFlow', 'QuestionnaireFlow', 'ConclusionFlow'];
 

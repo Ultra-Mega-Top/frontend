@@ -153,9 +153,16 @@ export class EvaluationQuestionnaire extends VuexModule {
 				),
 			};
 
-			console.log('🗿🍷 ~ data:', result);
 			const { data } = await api.post(url, result);
-			return data;
+			console.log('🗿🍷 ~ data:', JSON.stringify(data));
+
+			this.context.commit('EvaluationGeneral/SET_RESULT', data, {
+				root: true,
+			});
+
+			this.context.commit('EvaluationPresentation/next', null, {
+				root: true,
+			});
 		} catch (error) {
 			console.log('🗿🍷 ~ error:', error);
 		}

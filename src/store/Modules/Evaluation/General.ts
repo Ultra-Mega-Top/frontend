@@ -4,12 +4,13 @@ import { namespace } from 'vuex-class';
 import { api } from 'src/boot/axios';
 import { iQuestionnaire } from 'src/interfaces/iQuestionnaire';
 import { StartEvaluationDto } from './Dtos/StartEvaluationDto';
+import { iResult } from 'src/interfaces/iResult';
 
 export type QuestionnaireSettings = Omit<iQuestionnaire, 'questions'>;
 
 @Module({ namespaced: true })
 export class EvaluationGeneral extends VuexModule {
-	evaluationId = '64ab1deb108b06bac541c734';
+	evaluationId = '';
 	settings: QuestionnaireSettings | null = null;
 
 	@Mutation
@@ -44,6 +45,13 @@ export class EvaluationGeneral extends VuexModule {
 		} catch (error) {
 			console.log('🗿🍷 ~ error:', error);
 		}
+	}
+
+	result: iResult | null = null;
+
+	@Mutation
+	SET_RESULT(payload: iResult) {
+		this.result = payload;
 	}
 }
 
