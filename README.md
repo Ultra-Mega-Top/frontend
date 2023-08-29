@@ -63,27 +63,4 @@ principais requisitos funcionais do sistema são:
 Importante: algumas informações foram omitidas de forma proposital. Você
 deverá decidir qual a melhor forma para entregar a melhor solução dentro do cenário proposto e essas decisões devem estar documentadas no software, na forma de comentários.
 
-Regras para implementação:
-• Utilizar Vue.js, na versão 2.6 (obrigatório);
-• Utilizar Node Js (obrigatório);
-• Utilizar como banco de dados o Mongo DB (obrigatório);
-• Utilizar o Git, juntamente com o GitHub(obrigatório);
-• Utilizar o NestJs para implementação do backend (obrigatório);
-• Utilizar API Rest (obrigatório);
-• Publicar a aplicação em uma plataforma de cloud e disponibilizar o link
-para acesso à mesma (desejável);
 
-O que iremos avaliar:
-• Organização do código;
-• Organização no controle de versão;
-• Complexidade e modularização do código;
-• Documentação com orientações para execução do desafio.
-
-O que deve ser entregue:
-• Link do projeto no GitHub;
-• Demais documentos referentes ao projeto, se houver;
-• Link de acesso à aplicação publicada na plataforma de cloud (se houver).
-A entrega deve ser feita em até 5 dias, a contar da data de recebimento
-das instruções do teste.
-
-Resposta: Deixei o link com suas respostas no espaço abaixo. Em caso de dúvida, entre em contato pelo e-mail: clarice.neto@demarco.com.br
